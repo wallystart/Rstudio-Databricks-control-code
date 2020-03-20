@@ -1,0 +1,27 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Import library SparkR
+```{r}
+library(SparkR)
+```
+
+Init session
+```{r}
+sparkR.session()
+```
+
+URL SQL Server Genomica-DW
+```{r}
+jdbcUrl <- '{url connection}'
+```
+
+Use read.jdbc for query
+DOC: https://spark.apache.org/docs/2.0.0/api/R/read.jdbc.html
+```{r}
+df_unificado <- read.jdbc( jdbcUrl, "(SELECT TOP 10 * FROM dbo.Unificado) as subq" )
+head(df_unificado)
+```
